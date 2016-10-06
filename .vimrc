@@ -1,13 +1,8 @@
 syntax on
 set nu
 set tabstop=4
-set shiftwidth=2
-set softtabstop=2
 set hlsearch
-set mouse-=a
-set laststatus=2
 set autoindent
-set history=100
 set ruler
 
 nnoremap th  :tabfirst<CR>
@@ -18,5 +13,15 @@ nnoremap tt  :tabedit<Space>
 nnoremap tn  :tabnext<Space>
 nnoremap tm  :tabm<Space>
 nnoremap td  :tabclose<CR>
-color desert      "set the color scheme for vim
 
+" Pathogen
+execute pathogen#infect()
+filetype plugin indent on
+
+" NERDtree
+nnoremap <silent> <F5> :NERDTree<CR>
+
+" Update/reload cscope DB
+map <F6> :!cscope -b<CR>:cs reset<CR><CR> 
+
+colorscheme evening

@@ -1,4 +1,8 @@
-export PATH=/usr/local/autoconf/bin:$PATH
-HOMEBREW_NO_ANALYTICS=1
+# My alias
+alias c='clear'
+alias up='source ~/.bashrc'
+
+# Custom PATH
+PATH=$PATH:~/scripts
 
 source ~/.bashrc

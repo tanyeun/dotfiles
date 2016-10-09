@@ -10,6 +10,10 @@ set autoindent
 set history=100
 set ruler
 
+if &diff 
+ color diffscheme
+endif
+
 nnoremap th  :tabfirst<CR>
 nnoremap tj  :tabnext<CR>
 nnoremap tk  :tabprev<CR>
@@ -18,5 +22,4 @@ nnoremap tt  :tabedit<Space>
 nnoremap tn  :tabnext<Space>
 nnoremap tm  :tabm<Space>
 nnoremap td  :tabclose<CR>
-color desert      "set the color scheme for vim
 

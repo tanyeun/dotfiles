@@ -1,4 +1,6 @@
 My settings
 
-Ubuntu-linux install:
+Package installed:
 git
+tmux
+cscope

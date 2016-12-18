@@ -1,9 +1,10 @@
 syntax on
 set nu
 set tabstop=4
-" set hlsearch
 set autoindent
 set ruler
+set foldmethod=manual
+set pastetoggle=<F7>
 
 " Enable highlight to save temp settings
 set viminfo^=! 

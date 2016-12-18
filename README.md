@@ -1,6 +1,6 @@
-My settings
+# My settings
 
-Package installed:
-git
-tmux
-cscope
+## Package installed:
+* git
+* tmux
+* cscope

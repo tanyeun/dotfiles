@@ -40,21 +40,6 @@ case "$TERM" in
     xterm-color) color_prompt=yes;;
 esac
 
-# enable git branch in prompt
-find_git_branch() {
-  # Based on: http://stackoverflow.com/a/13003854/170413
-  local branch
-  if branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null); then
-    if [[ "$branch" == "HEAD" ]]; then
-	  branch='detached*'
-	fi
-	git_branch="( $branch )"
-  else
-	git_branch=""
-  fi
-}
-
-PROMPT_COMMAND="find_git_branch; $PROMPT_COMMAND"
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
@@ -72,15 +57,6 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ "$color_prompt" = yes ]; then
-    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$'
-    PS1=" \[\033[1;32m\]\w \[\033[33m\]\$git_branch\n\[\033[1;97m\]\$ \[\033[0m\]"
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
-
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
@@ -94,8 +70,8 @@ esac
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    alias dir='dir --color=auto'
-    alias vdir='vdir --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
@@ -131,4 +107,58 @@ if ! shopt -oq posix; then
   fi
 fi
 
-source ~/.bash_profile
+#################
+# Mine Settings 
+#################
+
+# === Functions ===
+
+# enable git branch in prompt
+find_git_branch() {
+  # Based on: http://stackoverflow.com/a/13003854/170413
+  local branch
+  if branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null); then
+    if [[ "$branch" == "HEAD" ]]; then
+	  branch='detached*'
+	fi
+	git_branch="( $branch )"
+  else
+	git_branch=""
+  fi
+}
+PROMPT_COMMAND="find_git_branch; $PROMPT_COMMAND"
+
+vssh(){
+  echo "connecting ... 192.168.11.$1"
+  ssh root@192.168.11.$1
+}
+
+# === Custom Command ===
+alias c='clear'
+alias up='source ~/.bash_profile'
+alias vssh=vssh
+
+# === Custom Folder ===
+alias bv='cd ~/Dev/Bovia'
+
+# With Tmux installed
+alias tl="tmux list-sessions"
+alias ta="tmux attach -t"
+alias tk="tmux kill-session -t"
+
+# With Git installed
+alias gl="git log --oneline"
+
+# Command Line Prompt
+if [ "$color_prompt" = yes ]; then
+    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$'
+    PS1=' \[\033[1;32m\]\w \[\033[33m\]$git_branch\n\[\033[1;97m\]\$ \[\033[0m\]'
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+unset color_prompt force_color_prompt
+
+# === Custom PATH ===
+PATH=$PATH:~/scripts
+

@@ -37,14 +37,14 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color) color_prompt=yes;;
+    xterm-color|*-256color) color_prompt=yes;;
 esac
 
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-force_color_prompt=yes
+#force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -78,10 +78,8 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+# colored GCC warnings and errors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -111,6 +109,10 @@ fi
 # Mine Settings 
 #################
 
+if [ -f ~/.git-completion.bash ]; then
+  source ~/.git-completion.bash
+fi
+
 # === Functions ===
 
 # enable git branch in prompt
@@ -126,14 +128,18 @@ find_git_branch() {
 	git_branch=""
   fi
 }
+
 PROMPT_COMMAND="find_git_branch; $PROMPT_COMMAND"
 
 vssh(){
-  echo "connecting ... 192.168.11.$1"
-  ssh root@192.168.11.$1
+  echo "connecting ... 192.168.$1"
+  ssh root@192.168.$1
 }
 
 # === Custom Command ===
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
 alias c='clear'
 alias up='source ~/.bash_profile'
 alias vssh=vssh
@@ -145,6 +151,7 @@ alias bv='cd ~/Dev/Bovia'
 alias tl="tmux list-sessions"
 alias ta="tmux attach -t"
 alias tk="tmux kill-session -t"
+alias c++='clang++ -std=c++11 -stdlib=libc++'
 
 # With Git installed
 alias gl="git log --oneline"
@@ -160,5 +167,12 @@ fi
 unset color_prompt force_color_prompt
 
 # === Custom PATH ===
+PATH=$PATH:/usr/local/mysql/bin
+PATH=$GOPATH/bin:$PATH
 PATH=$PATH:~/scripts
+
+export PATH
+export CLICOLOR=1
+export LSCOLORS=Gxfxcxdxbxegedabagacad
+export GOPATH=~/Program/gocode
 

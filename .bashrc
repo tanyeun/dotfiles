@@ -37,7 +37,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
+    xterm-color) color_prompt=yes;;
 esac
 
 
@@ -128,7 +128,6 @@ find_git_branch() {
 	git_branch=""
   fi
 }
-
 PROMPT_COMMAND="find_git_branch; $PROMPT_COMMAND"
 
 vssh(){
@@ -143,6 +142,7 @@ alias l='ls -CF'
 alias c='clear'
 alias up='source ~/.bash_profile'
 alias vssh=vssh
+alias wstart='php artisan serve --host 0.0.0.0 --port 8000'
 
 # === Custom Folder ===
 alias bv='cd ~/Dev/Bovia'
@@ -166,13 +166,13 @@ else
 fi
 unset color_prompt force_color_prompt
 
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/Dev/Go
+
 # === Custom PATH ===
 PATH=$PATH:/usr/local/mysql/bin
 PATH=$GOPATH/bin:$PATH
 PATH=$PATH:~/scripts
-
-export PATH
-export CLICOLOR=1
-export LSCOLORS=Gxfxcxdxbxegedabagacad
-export GOPATH=~/Program/gocode
-
+PATH=$PATH:$GOROOT/bin
+PATH=$PATH:$GOPATH/bin
+PATH=$PATH:/opt/lampp/bin

@@ -2,6 +2,11 @@ syntax on
 set nu
 set tabstop=4
 set autoindent
+set shiftwidth=2
+set softtabstop=2
+set mouse-=a
+set laststatus=2
+set history=100
 set ruler
 set foldmethod=manual
 set pastetoggle=<F7>
@@ -21,12 +26,16 @@ nnoremap tt  :tabedit<Space>
 nnoremap tm  :tabm<Space>
 nnoremap td  :tabclose<CR>
 
+if &diff 
+ color diffscheme
+endif
+
 "Search for visually selected text
 vnoremap // y/<C-R>"<CR>
 
 " Pathogen
-execute pathogen#infect()
-filetype plugin indent on
+" execute pathogen#infect()
+" filetype plugin indent on
 
 " NERDtree
 nnoremap <silent> <F5> :NERDTree<CR>

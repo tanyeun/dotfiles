@@ -37,14 +37,14 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color) color_prompt=yes;;
+    xterm-color|*-256color) color_prompt=yes;;
 esac
 
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -128,6 +128,7 @@ find_git_branch() {
 	git_branch=""
   fi
 }
+
 PROMPT_COMMAND="find_git_branch; $PROMPT_COMMAND"
 
 vssh(){
@@ -136,16 +137,19 @@ vssh(){
 }
 
 # === Custom Command ===
+alias lp='ls *.pdf'    # list pdf files
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias c='clear'
 alias up='source ~/.bash_profile'
 alias vssh=vssh
-alias wstart='php artisan serve --host 0.0.0.0 --port 8000'
+alias finder='nautilus --no-desktop'
 
 # === Custom Folder ===
-alias bv='cd ~/Dev/Bovia'
+alias lnl='cd ~/Development/LianliC'
+alias lnl1='cd ~/Development/LianliC/SDK/sunplus/20160517'
+alias modp='cd ~/Documents/LianLi/MOD/Survey'
 
 # With Tmux installed
 alias tl="tmux list-sessions"
@@ -153,8 +157,16 @@ alias ta="tmux attach -t"
 alias tk="tmux kill-session -t"
 alias c++='clang++ -std=c++11 -stdlib=libc++'
 
+# With Android installed
+alias ast="~/Tools/android-studio/bin/studio.sh"
+
 # With Git installed
 alias gl="git log --oneline"
+
+# Remove desktop load for file manager
+alias finder="nautilus --no-desktop"
+
+alias lock="xscreensaver-command -l"
 
 # Command Line Prompt
 if [ "$color_prompt" = yes ]; then
@@ -162,17 +174,20 @@ if [ "$color_prompt" = yes ]; then
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$'
     PS1=' \[\033[1;32m\]\w \[\033[33m\]$git_branch\n\[\033[1;97m\]\$ \[\033[0m\]'
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$'
 fi
 unset color_prompt force_color_prompt
 
-export GOROOT=/usr/local/go
-export GOPATH=$HOME/Dev/Go
-
 # === Custom PATH ===
+PATH=$PATH:~/Development/LianliC/SDK/arm/bin
+PATH=$PATH:~/Development/LianliC/SDK/arm/libexec/gcc/arm-none-linux-gnueabi/4.4.1
 PATH=$PATH:/usr/local/mysql/bin
-PATH=$GOPATH/bin:$PATH
-PATH=$PATH:~/scripts
-PATH=$PATH:$GOROOT/bin
 PATH=$PATH:$GOPATH/bin
-PATH=$PATH:/opt/lampp/bin
+PATH=$PATH:~/scripts
+
+export PATH
+export OSTYPE=ubuntu
+export CLICOLOR=1
+export LSCOLORS=Gxfxcxdxbxegedabagacad
+export GOPATH=~/Program/gocode
+

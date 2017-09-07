@@ -8,7 +8,6 @@ set mouse-=a
 set laststatus=2
 set history=100
 set ruler
-set foldmethod=manual
 set pastetoggle=<F7>
 
 " Enable highlight to save temp settings

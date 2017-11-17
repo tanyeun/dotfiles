@@ -9,6 +9,7 @@ set laststatus=2
 set history=100
 set ruler
 set pastetoggle=<F7>
+set encoding=utf-8
 
 " Enable highlight to save temp settings
 set viminfo^=! 

@@ -47,4 +47,4 @@ map <F6> :!cscope -b<CR>:cs reset<CR><CR>
 au BufWinLeave * mkview
 au BufWinEnter * silent loadview
 
-colorscheme evening
+colorscheme murphy 

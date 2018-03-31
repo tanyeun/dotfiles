@@ -141,6 +141,8 @@ alias up='source ~/.bash_profile'
 
 
 # === Custom Folder ===
+alias c:='cd /mnt/c'
+alias d:='cd /mnt/d'
 
 
 # With Tmux installed

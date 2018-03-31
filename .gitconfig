@@ -1,0 +1,28 @@
+# This is Git's per-user configuration file.
+[user]
+
+  # Please adapt and uncomment the following lines:
+  name = "David Lee"
+  email = david2_lee@askey.com
+
+[core]
+  editor = vim
+
+[color]
+  status = auto
+
+[color "status"]
+added = bold green
+changed = bold blue
+untracked = bold yellow
+deleted = bold red
+  # Available color codes : combination:
+  #    normal  : bold
+  #    black   : dim
+  #    red     : ul => underline
+  #    green   : blink
+  #    yellow  : reverse => FanBai
+  #    blue
+  #    magenta
+  #    cyan
+  #    white

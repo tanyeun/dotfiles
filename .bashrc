@@ -40,7 +40,6 @@ case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
 esac
 
-
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
@@ -79,7 +78,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # colored GCC warnings and errors
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -131,10 +130,6 @@ find_git_branch() {
 
 PROMPT_COMMAND="find_git_branch; $PROMPT_COMMAND"
 
-vssh(){
-  echo "connecting ... 192.168.$1"
-  ssh root@192.168.$1
-}
 
 # === Custom Command ===
 alias lp='ls *.pdf'    # list pdf files
@@ -143,13 +138,10 @@ alias la='ls -A'
 alias l='ls -CF'
 alias c='clear'
 alias up='source ~/.bash_profile'
-alias vssh=vssh
-alias finder='nautilus --no-desktop'
+
 
 # === Custom Folder ===
-alias lnl='cd ~/Development/LianliC'
-alias lnl1='cd ~/Development/LianliC/SDK/sunplus/20160517'
-alias modp='cd ~/Documents/LianLi/MOD/Survey'
+
 
 # With Tmux installed
 alias tl="tmux list-sessions"
@@ -157,16 +149,14 @@ alias ta="tmux attach -t"
 alias tk="tmux kill-session -t"
 alias c++='clang++ -std=c++11 -stdlib=libc++'
 
-# With Android installed
-alias ast="~/Tools/android-studio/bin/studio.sh"
+
 
 # With Git installed
 alias gl="git log --oneline"
 
-# Remove desktop load for file manager
-alias finder="nautilus --no-desktop"
 
-alias lock="xscreensaver-command -l"
+
+
 
 # Command Line Prompt
 if [ "$color_prompt" = yes ]; then
@@ -178,16 +168,12 @@ else
 fi
 unset color_prompt force_color_prompt
 
+eval $(dircolors -b $HOME/.dircolors)
+
 # === Custom PATH ===
-PATH=$PATH:~/Development/LianliC/SDK/arm/bin
-PATH=$PATH:~/Development/LianliC/SDK/arm/libexec/gcc/arm-none-linux-gnueabi/4.4.1
-PATH=$PATH:/usr/local/mysql/bin
-PATH=$PATH:$GOPATH/bin
+
 PATH=$PATH:~/scripts
 
 export PATH
-export OSTYPE=ubuntu
 export CLICOLOR=1
 export LSCOLORS=Gxfxcxdxbxegedabagacad
-export GOPATH=~/Program/gocode
-

@@ -39,7 +39,7 @@ vnoremap // y/<C-R>"<CR>
 " filetype plugin indent on
 
 " NERDtree
-nnoremap <silent> <F5> :NERDTree<CR>
+nnoremap <silent> <F5> :NERDTreeToggle<CR>
 
 " Update/reload cscope DB
 map <F6> :!cscope -b<CR>:cs reset<CR><CR> 

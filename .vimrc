@@ -10,6 +10,7 @@ set history=100
 set ruler
 set foldmethod=manual
 set pastetoggle=<F7>
+set hlsearch
 
 " Enable highlight to save temp settings
 set viminfo^=! 
@@ -47,4 +48,4 @@ map <F6> :!cscope -b<CR>:cs reset<CR><CR>
 au BufWinLeave * mkview
 au BufWinEnter * silent loadview
 
-colorscheme murphy 
+colorscheme murphy

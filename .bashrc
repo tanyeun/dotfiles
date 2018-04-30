@@ -138,6 +138,7 @@ alias la='ls -A'
 alias l='ls -CF'
 alias c='clear'
 alias up='source ~/.bash_profile'
+alias grmc='git rm --cached'
 
 
 # === Custom Folder ===
@@ -164,7 +165,7 @@ alias gl="git log --oneline"
 if [ "$color_prompt" = yes ]; then
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$'
-    PS1=' \[\033[1;32m\]\w \[\033[33m\]$git_branch\n\[\033[1;97m\]\$ \[\033[0m\]'
+    PS1=' \[\033[1;33m\]\h:\[\033[1;32m\]\w \[\033[33m\]$git_branch\n\[\033[1;97m\]\$ \[\033[0m\]'
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$'
 fi
@@ -175,7 +176,14 @@ eval $(dircolors -b $HOME/.dircolors)
 # === Custom PATH ===
 
 PATH=$PATH:~/scripts
+PATH=$PATH:~/tools/bitbake/bin
 
 export PATH
 export CLICOLOR=1
 export LSCOLORS=Gxfxcxdxbxegedabagacad
+export GREP_COLORS="fn=36:mc=01;30:ms=33:sl=21:cx=31"
+
+# bitbake
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8

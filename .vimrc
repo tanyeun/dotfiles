@@ -10,6 +10,7 @@ set history=100
 set ruler
 set foldmethod=manual
 set pastetoggle=<F7>
+set hlsearch
 
 " Enable highlight to save temp settings
 set viminfo^=! 
@@ -38,10 +39,13 @@ vnoremap // y/<C-R>"<CR>
 " filetype plugin indent on
 
 " NERDtree
-nnoremap <silent> <F5> :NERDTree<CR>
+nnoremap <silent> <F5> :NERDTreeToggle<CR>
 
 " Update/reload cscope DB
 map <F6> :!cscope -b<CR>:cs reset<CR><CR> 
+
+" Fugitive - git wrapper
+nnoremap gb  :Gblame<CR>
 
 " Automatically save/load folds
 au BufWinLeave * mkview

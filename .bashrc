@@ -156,6 +156,7 @@ alias c++='clang++ -std=c++11 -stdlib=libc++'
 
 # With Git installed
 alias gl="git log --oneline"
+alias glp='git log --pretty="%C(Yellow)%h  %C(reset)%ad %C(Cyan)%an: %C(reset)%s" --date=short' #Pretty format
 
 
 

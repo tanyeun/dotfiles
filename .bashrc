@@ -138,6 +138,7 @@ alias la='ls -A'
 alias l='ls -CF'
 alias c='clear'
 alias up='source ~/.bash_profile'
+alias gsql='ssh -p 29418 gerrit gerrit gsql'
 
 
 # === Custom Folder ===
@@ -155,7 +156,7 @@ alias c++='clang++ -std=c++11 -stdlib=libc++'
 
 # With Git installed
 alias gl="git log --oneline"
-
+alias glp='git log --pretty="%C(Yellow)%h  %C(reset)%ad %C(Cyan)%an: %C(reset)%s" --date=short' #Pretty format
 
 
 

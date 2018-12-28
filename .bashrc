@@ -139,7 +139,8 @@ alias l='ls -CF'
 alias c='clear'
 alias up='source ~/.bash_profile'
 alias grmc='git rm --cached'
-
+alias gdiff='git difftool --extcmd="vimdiff"'
+alias pm2='/usr/local/nvm/v8.11.2/bin/pm2'
 
 # === Custom Folder ===
 alias c:='cd /mnt/c'
@@ -188,3 +189,6 @@ export GREP_COLORS="fn=36:mc=01;30:ms=33:sl=21:cx=31"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"

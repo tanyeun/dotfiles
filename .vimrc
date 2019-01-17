@@ -47,4 +47,9 @@ map <F6> :!cscope -b<CR>:cs reset<CR><CR>
 au BufWinLeave * mkview
 au BufWinEnter * silent loadview
 
-colorscheme evening
+" Fugitive - git wrapper
+nnoremap gb :Gblane<CR>
+
+
+
+colorscheme murphy

@@ -94,6 +94,11 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# ASKEY
+if [ -f ~/.bash_askey ]; then
+    . ~/.bash_askey
+fi
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -116,20 +121,24 @@ fi
 # === Functions ===
 
 # enable git branch in prompt
+# Somehow this doesn't work well on ubuntu 14.04
 find_git_branch() {
   # Based on: http://stackoverflow.com/a/13003854/170413
-  local branch
-  if branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null); then
+  branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
+
+  if [ -z "$branch" ] ; then
+	git_branch=""
+  else
     if [[ "$branch" == "HEAD" ]]; then
 	  branch='detached*'
 	fi
 	git_branch="( $branch )"
-  else
-	git_branch=""
   fi
 }
 
-PROMPT_COMMAND="find_git_branch; $PROMPT_COMMAND"
+parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+ }
 
 vssh(){
   echo "connecting ... 192.168.$1"
@@ -145,6 +154,10 @@ alias c='clear'
 alias up='source ~/.bash_profile'
 alias vssh=vssh
 alias finder='nautilus --no-desktop'
+alias avpn='f5fpc -s -t m64vpn.askey.com.tw'
+alias avpnc='f5fpc -i' #Check Connection
+alias avpnd='f5fpc -o' #Disconnect
+alias bb='bitbake'
 
 # === Custom Folder ===
 alias lnl='cd ~/Development/LianliC'
@@ -168,11 +181,13 @@ alias finder="nautilus --no-desktop"
 
 alias lock="xscreensaver-command -l"
 
+alias python="python3.7"
+
 # Command Line Prompt
 if [ "$color_prompt" = yes ]; then
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$'
-    PS1=' \[\033[1;32m\]\w \[\033[33m\]$git_branch\n\[\033[1;97m\]\$ \[\033[0m\]'
+    PS1=' \[\033[1;32m\]\w \[\033[33m\]$(parse_git_branch)\n\[\033[1;97m\]\$ \[\033[0m\]'
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$'
 fi

@@ -180,6 +180,9 @@ if [ "$color_prompt" = yes ]; then
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$'
     PS1='\033[36m\e[1m[\e[0m\h\033[36m\e[1m] \e[0m\[\033[1;32m\]\w\[\033[33m\]$(parse_git_branch)\n\[\033[1;97m\]\$ \[\033[0m\]'
+
+	# This one is for ROOT
+    #PS1='\e[97m\u@\033[36m\e[1m[\e[0m\h\033[36m\e[1m] \e[0m\[\033[1;32m\]\w\[\033[33m\]$(parse_git_branch)\n\[\033[1;97m\]\$ \[\033[0m\]'
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$'
 fi

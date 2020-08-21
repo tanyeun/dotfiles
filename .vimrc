@@ -184,6 +184,9 @@ imap <M-Down> <ESC><c-w>j
 " old autocomplete keyboard shortcut
 imap <C-J> <C-X><C-O>
 
+" Reset cscope DB
+map <F5> :!cscope -Rb<CR>:cs reset<CR><CR>  
+
 " Comment this line to enable autocompletion preview window
 " (displays documentation related to the selected completion option)
 " Disabled by default because preview makes the window flicker
@@ -408,3 +411,8 @@ let g:airline#extensions#whitespace#enabled = 0
 "let g:airline_symbols.branch = '⭠'
 "let g:airline_symbols.readonly = '⭤'
 "let g:airline_symbols.linenr = '⭡'
+
+
+
+" Change highlight line number color scheme
+hi LineNr       term=bold cterm=bold ctermfg=2 guifg=Grey guibg=Grey90

@@ -181,8 +181,6 @@ alias finder="nautilus --no-desktop"
 
 alias lock="xscreensaver-command -l"
 
-alias python="python3.7"
-
 # Command Line Prompt
 if [ "$color_prompt" = yes ]; then
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '

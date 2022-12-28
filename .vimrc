@@ -34,6 +34,15 @@ endif
 "Search for visually selected text
 vnoremap // y/<C-R>"<CR>
 
+function! GitBlame()
+  let l:line1 = line("'<")
+  let l:line2 = line("'>")
+  execute "!git blame --color-by-age " . expand("%:p") . " | sed -n " . l:line1 . "," . l:line2 . "p"
+endfunction
+
+vmap <silent> gl :call GitBlame()<CR>
+
+
 " Pathogen
 " execute pathogen#infect()
 " filetype plugin indent on
